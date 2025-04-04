@@ -9,6 +9,15 @@ export interface UserData {
     email: string;
 }
 
+export interface UserList {
+    id: string;
+    userName: string;
+    isActivated: boolean;
+    email: string;
+    phoneNumber: string;
+    creationDate: string;
+}
+
 export interface LoginResponse {
     token: string;
     user: UserData;
