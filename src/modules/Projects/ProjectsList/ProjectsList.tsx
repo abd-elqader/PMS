@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react'
-import { Dropdown, Form,  Table } from 'react-bootstrap'
+import { Dropdown, Form, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Project, ProjectResponse } from '../../Interfaces/project';
 import { privateAxiosInstance } from '../../services/api/apiInstance';
@@ -14,9 +14,10 @@ import { Authcontext } from '../../AuthContext/AuthContext';
 import TableActions from '../../shared/TableActions/TableActions';
 import Pagination from "../../shared/Pagination/Pagination";
 import usePagination from '../../hooks/usePagination';
+import ItemView from '../../shared/ItemView/ItemView';
 
 export default function ProjectsList() {
-  const{title, pageNumber, pageSize,totalPages,handleTitleValue,handleNext,handlePrev,handlePageSizeChange ,setTotalPages}=usePagination()
+  const { title, pageNumber, pageSize, totalPages, handleTitleValue, handleNext, handlePrev, handlePageSizeChange, setTotalPages } = usePagination()
   const authContext = useContext(Authcontext)
   const role = authContext?.role
   const [projects, setProjects] = useState<Project[]>([]);
@@ -26,7 +27,8 @@ export default function ProjectsList() {
   const [itemToDeleteName, setItemToDeleteName] = useState<string | null>(null);
   const [deleteModalshow, setDeleteModalshow] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
-
+  const [itemToView, setItemToView] = useState<Project>({} as Project);
+  const [showItemViewModal, setShowItemViewModal] = useState<boolean>(false);
 
   // * get projects list
   const getProjects = async (): Promise<void> => {
@@ -42,14 +44,14 @@ export default function ProjectsList() {
         })
         : await privateAxiosInstance.get<ProjectResponse>(PROJECT_URLS.GET_PROJECTS_BY_EMPLOYEE, {
 
-            params: {
-              title,
-              pageNumber,
-              pageSize
-            }
-          });
-          setProjects(response?.data?.data)
-          setTotalPages(response?.data?.totalNumberOfRecords)
+          params: {
+            title,
+            pageNumber,
+            pageSize
+          }
+        });
+      setProjects(response?.data?.data)
+      setTotalPages(response?.data?.totalNumberOfRecords)
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message || '🦄 Something went wrong!');
@@ -87,7 +89,7 @@ export default function ProjectsList() {
 
   // *search
 
-  
+
   useEffect(() => {
     getProjects();
   }, [title, pageNumber, pageSize]);
@@ -100,6 +102,12 @@ export default function ProjectsList() {
         onConfirm={deleteProject}
         message={`are you sure that you want to delete project ${itemToDeleteName}`}
         isDeleting={isDeleting} />
+      <ItemView 
+      itemType='project'
+        role={role}
+        item={itemToView}
+        show={showItemViewModal}
+        handleClose={() => { setShowItemViewModal(false) }} />
       <div className='projects'>
         <div className="bcox-dark-color contentBg  d-flex align-items-center justify-content-between py-3 px-4 mb-3">
           <h3 className='h3 textMaster fw-medium'>Projects</h3>
@@ -151,6 +159,10 @@ export default function ProjectsList() {
                       itemName={project?.title}
                       role={role}
                       onDelete={handleDeleteClick}
+                      handleView={() => {
+                        setItemToView(project)
+                        setShowItemViewModal(true)
+                      }}
                     />
 
                   </td>
@@ -158,15 +170,15 @@ export default function ProjectsList() {
               )) : <tr><td colSpan={6}><NoData /></td></tr>}
             </tbody>
           </Table>
-             <Pagination
-                          pageNumber={pageNumber}
-                          pageSize={pageSize}
-                          totalItems={totalPages}
-                          onPageSizeChange={handlePageSizeChange}
-                          label="Tasks"
-                          handleNext={handleNext}
-                          handlePrev={handlePrev}
-                        />
+          <Pagination
+            pageNumber={pageNumber}
+            pageSize={pageSize}
+            totalItems={totalPages}
+            onPageSizeChange={handlePageSizeChange}
+            label="Tasks"
+            handleNext={handleNext}
+            handlePrev={handlePrev}
+          />
         </div>
       </div>
     </>

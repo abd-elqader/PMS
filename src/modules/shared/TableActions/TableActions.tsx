@@ -6,6 +6,7 @@ export default function TableActions({
   itemName,
   role,
   onDelete,
+  handleView,
 }: TableActionsProps) {
   return (
     <Dropdown>
@@ -13,7 +14,7 @@ export default function TableActions({
         <i className="fa fa-ellipsis-v textContent"></i>
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item className="textContent">
+        <Dropdown.Item onClick={handleView} className="textContent">
           <i className="fa fa-eye mx-2"></i>
           view
         </Dropdown.Item>

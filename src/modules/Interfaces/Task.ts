@@ -1,15 +1,22 @@
 // src/Interfaces/task.ts
+ type  Manager = {
+  userName: string;
+}
+ type Employee = {
+  userName: string;
+};
+ type Project = {
+    title: string;
+    manager: Manager
+  };
 
 export interface Task {
   id: number;
   title: string;
   status: string;
-  user: {
-    name: string;
-  };
-  project: {
-    title: string;
-  };
+  project: Project;
+  employee: Employee;
+  description: string;
   creationDate: string;
 }
 

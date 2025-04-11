@@ -20,7 +20,7 @@ export default function Login() {
   const { saveLoginData } = authContext;
   const {
     register,
-    formState: { errors },
+    formState: { errors , isSubmitting },
     handleSubmit } = useForm<LoginFormData>();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -85,7 +85,8 @@ export default function Login() {
               <Link to="/forget-password" className="text-white text-decoration-none">Forget Password ?</Link>
             </div>
             {/*#EF9B28*/}
-            <button type="submit" className="rounded-5 btn w-100 btn-warning">Submit</button>
+            <button type="submit" disabled={isSubmitting} className="rounded-5 btn w-100 btn-warning">
+              {isSubmitting? <i className="fa fa-spin fa-spinner"></i> :'Login'}</button>
           </form>
         </div>
 

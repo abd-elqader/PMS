@@ -3,4 +3,5 @@ export interface TableActionsProps {
     itemName: string;
     role: string | undefined;
     onDelete: (id: number , title: string) => void;
+    handleView: () => void;
   }

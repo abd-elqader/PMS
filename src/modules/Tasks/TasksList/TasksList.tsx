@@ -14,6 +14,7 @@ import { Authcontext } from "../../AuthContext/AuthContext";
 import TasksBoard from "../../EmployeeTasks/TasksBoard";
 import Pagination from "../../shared/Pagination/Pagination";
 import usePagination from "../../hooks/usePagination";
+import ItemView from "../../shared/ItemView/ItemView";
 
 
 export default function TasksList() {
@@ -29,6 +30,8 @@ export default function TasksList() {
   const [itemToDeleteName, setItemToDeleteName] = useState<string | null>(null);
   const [deleteModalshow, setDeleteModalshow] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
+  const [itemToView, setItemToView] = useState<Task>({} as Task);
+  const [showItemViewModal, setShowItemViewModal] = useState<boolean>(false);
 
   const getTasks = async (): Promise<void> => {
     setIsLoading(true);
@@ -86,7 +89,9 @@ export default function TasksList() {
 
 
   useEffect(() => {
-    getTasks();
+    if (role === 'Manager') {
+      getTasks();
+    }
   }, [title, pageNumber, pageSize]);
 
   return (
@@ -98,6 +103,12 @@ export default function TasksList() {
         message={`Are you sure that you want to delete task ${itemToDeleteName}`}
         isDeleting={isDeleting}
       />
+       <ItemView 
+            itemType='task'
+              role={role}
+              item={itemToView}
+              show={showItemViewModal}
+              handleClose={() => { setShowItemViewModal(false) }} />
       <>
         {role === "Employee" ? (
           <TasksBoard />
@@ -210,6 +221,10 @@ export default function TasksList() {
                             itemID={task.id}
                             role={role}
                             onDelete={handleDeleteClick}
+                            handleView={() => {
+                              setItemToView(task)
+                              setShowItemViewModal(true)
+                            }}
                           />
                         </td>
                       </tr>

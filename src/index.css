@@ -540,5 +540,8 @@ color: var(--main-color) ;
 }
 .boardContainer{
     min-height: 300px;
-
+}
+.tasksModal{
+    height: 200px;
+    overflow-y: auto;
 }
