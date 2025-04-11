@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const usePagination = () => {
       const [title, setTitle] = useState<string>("");
@@ -30,7 +30,7 @@ const usePagination = () => {
         };
       
         
-  return {title, pageNumber, pageSize,totalPages,handleTitleValue,handleNext,handlePrev,handlePageSizeChange ,setTotalPages}
+  return {title, pageNumber,setPageNumber, pageSize,totalPages,handleTitleValue,handleNext,handlePrev,handlePageSizeChange ,setTotalPages}
 }
 
 export default usePagination

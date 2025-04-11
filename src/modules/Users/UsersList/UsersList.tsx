@@ -8,13 +8,12 @@ import { format } from "date-fns";
 import { toast } from "react-toastify";
 import NoData from "../../shared/NoData/NoData.tsx";
 import Loading from "../../shared/Loading/Loading.tsx";
+import usePagination from "../../hooks/usePagination.ts";
+import Pagination from "../../shared/Pagination/Pagination.tsx";
 
 export default function UsersList() {
+  const{pageNumber,setPageNumber, pageSize,totalPages,handleNext,handlePrev,handlePageSizeChange ,setTotalPages}=usePagination()
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [pageSize, setPageSize] = useState<number>(8);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
   const [users, setUsers] = useState<UserList[]>([]);
   const [userName, setUserName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
@@ -223,7 +222,15 @@ export default function UsersList() {
             )}
           </tbody>
         </Table>
-        
+        <Pagination
+                          pageNumber={pageNumber}
+                          pageSize={pageSize}
+                          totalItems={totalPages}
+                          onPageSizeChange={handlePageSizeChange}
+                          label="Users"
+                          handleNext={handleNext}
+                          handlePrev={handlePrev}
+                        />
       </div>
     </>
   );
