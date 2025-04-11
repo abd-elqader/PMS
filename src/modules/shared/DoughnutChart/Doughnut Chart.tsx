@@ -16,8 +16,9 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, chartData }) => {
       {
         label: "",
         data: chartData,
-        backgroundColor: ["#E5E6F4", "#F4F4E5", "#F4E5ED"],
-        hoverBackgroundColor: ["#CFD1EC", "#E4E4BC", "#E7C3D7"],
+        backgroundColor: ["#A6A9E0", "#DADA97", "#E59EC2"],
+hoverBackgroundColor: ["#8489D6", "#C3C36E", "#D67AA8"],
+
       },
     ],
   };

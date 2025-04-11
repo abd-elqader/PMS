@@ -15,17 +15,23 @@ export default function Dashboard() {
         </h3>
         <p className="fs-3">You can add project and assign tasks to your team</p>
       </div>
-      <div className={`row g-3 mt-2 ${role !== "Employee"&&"justify-content-around  "}`}>
-        <div className="col-12 col-md-6 col-lg-4 ">
+      <div className={`row g-3 mt-2 pb-5 ${role !== "Employee"&&"justify-content-around  "}`}>
+        <div className="col-12 col-md-6 col-lg-4">
+        <div className="contentBg h-100">
           <TaskStatistics role={role} />
+          </div>
         </div>
         {role !== "Employee" && <>
-          <div className="col-12 col-md-6 col-lg-4">
+          <div className="col-12 col-md-6 col-lg-4 ">
+          <div className="contentBg h-100">
             <UserStatistics role={role} />
+            </div>
           </div>
         </>}
           <div className="col-12 col-md-4  ">
+            <div className="contentBg h-100">
             <ProgressChart />
+            </div>
           </div>
 
 

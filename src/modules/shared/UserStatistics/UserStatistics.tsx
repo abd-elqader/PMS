@@ -30,10 +30,10 @@ const UserStatistics = ({role}:{role:string}) => {
     
         }, []);
   return (
-    <div className="box-dark-color py-3 bg-dashboard-light rounded-2">
-    <div className="card-left-line px-5">
+    <div className=" py-3  rounded-2">
+    <div className="card-left-line textContent px-5">
       <h5>Users</h5>
-      <p className="text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+      <p className="">Monitor active team members.</p>
     </div>
     <div className="row p-3">
       <div className="col-12 col-sm-6 col-md-6">

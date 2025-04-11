@@ -52,14 +52,14 @@ export default function ProjectData() {
   
     return (
       <>
-        <div className="bg-white  py-3 px-4 mb-3">
+        <div className="bg-white  py-3 px-4 contentBg mb-3">
           <Link className='textMaster text-decoration-none' to={'/dashboard/projects'}>
             <i className='fa fa-arrow-left me-2'></i>
             View All Projects</Link>
           <h3 className='h3 textMaster fw-medium'>{ProjectId?'edit':'Add'} New Project</h3>
         </div>
-        <div className='mx-auto bg-white container w-75 rounded-3 shadow-lg py-3 px-3'>
-          <Form onSubmit={handleSubmit(onSubmit)}>
+        <div className='mx-auto contentBg bg-white container w-75 rounded-3 shadow-lg py-3 px-3'>
+          <Form className='filterGroup' onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>title</Form.Label>
               <Form.Control className='projecInput'{...register('title', REQUIRED_VALIDATION('title'))} type="text" placeholder="Name" />

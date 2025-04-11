@@ -38,10 +38,10 @@ const TaskStatistics = ({role="manger"}:{role:string}) => {
             getTaskCount();
         }, []);
   return (
-    <div className="box-dark-color py-3 bg-dashboard-light rounded-2">
-    <div className="card-left-line px-5">
+    <div className=" py-3 rounded-2">
+    <div className="card-left-line px-5 textContent">
       <h5>Tasks</h5>
-      <p className="text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+      <p className="">View Total Task and Project Counts</p>
     </div>
     <div className="row p-3">
      

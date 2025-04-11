@@ -89,8 +89,10 @@ export default function ProjectsList() {
 
   
   useEffect(() => {
-    getProjects();
-  }, [title, pageNumber, pageSize]);
+    if (role) {
+      getProjects();
+    }
+  }, [role, title, pageNumber, pageSize]);
 
   return (
     <>
@@ -109,14 +111,14 @@ export default function ProjectsList() {
             Add New Project</Link>}
         </div>
         <div className="ms-4 project contentBg cbox-dark-color pt-3 rounded-2">
-          <div className="position-relative ms-4">
+          <div className="position-relative filterGroup ms-4">
             <Form.Control
               onInput={handleTitleValue}
               type="search"
               placeholder="Search by Title"
               className="projecInput text-dark searchInput w-200"
             />
-            <i className="fa fa-search position-absolute search text-gray-400"></i>
+            <i className="fa fa-search position-absolute search inputIcon"></i>
           </div>
           <Table responsive striped bordered hover className='mt-3 '>
             <thead>

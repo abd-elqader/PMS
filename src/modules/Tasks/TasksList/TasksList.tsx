@@ -103,7 +103,7 @@ export default function TasksList() {
           <TasksBoard />
         ) : (
           <div className="tasks">
-            <div className=" d-flex align-items-center justify-content-between py-3 px-4 mb-3">
+            <div className=" d-flex contentBg align-items-center justify-content-between py-3 px-4 mb-3">
               <h3 className="h3 dark-text fw-medium">Tasks</h3>
               <Link
                 className="btn bgMain btn-custom text-white"
@@ -116,7 +116,7 @@ export default function TasksList() {
 
             <div className="ms-4 task  pt-3 rounded-2 ">
               <div
-                className="position-relative ms-4"
+                className="position-relative filterGroup ms-4"
                 style={{ width: "250px" }}
               >
                 <Form.Control
@@ -127,7 +127,7 @@ export default function TasksList() {
                   style={{ borderRadius: "2rem", paddingLeft: "2.5rem" }}
                 />
                 <i
-                  className="fa fa-search position-absolute text-gray-400"
+                  className="fa fa-search position-absolute inputIcon"
                   style={{
                     left: "10px",
                     top: "50%",
